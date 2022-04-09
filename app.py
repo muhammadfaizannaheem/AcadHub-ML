@@ -15,6 +15,7 @@ model=joblib.load('KNN Trained and Saved Model.sav')
 #     return jsonify({'Prediction ': list(prediction) })
 @app.route('/predict',methods = ['POST'])
 def ping():
+    response.headers.add('Access-Control-Allow-Origin', '*')
     testtext=request.json
     query_df=pd.DataFrame(testtext)
     prediction = model.predict(query_df)
